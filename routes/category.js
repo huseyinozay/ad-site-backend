@@ -15,12 +15,26 @@ router.get("/", async (req, res) => {
 });
 
 //Getting by parent
-router.get("/:id", async (req, res) => {
+router.get("/child/:id", async (req, res) => {
   const id = req.params.id;
   try {
     const categoryLayer = await Category.findAll({
       where: {
         CategoryId: id,
+      },
+    });
+    res.json(categoryLayer);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+//Getting onyl parent
+router.get("/parent", async (req, res) => {
+  try {
+    const categoryLayer = await Category.findAll({
+      where: {
+        CategoryId: null,
       },
     });
     res.json(categoryLayer);
