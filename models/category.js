@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       models.Category.hasMany(models.Category);
       models.Category.belongsTo(models.Category);
     }
-    toJSON() {
-      return { ...this.get(), id: undefined, CategoryId: undefined };
-    }
+    // toJSON() {
+    //   return { ...this.get(), id: undefined, CategoryId: undefined };
+    // }
   }
   Category.init(
     {

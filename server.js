@@ -3,6 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+const cors = require("cors");
+
 const db = require("./config/database");
 const categoriesRouter = require("./routes/category");
 
@@ -12,6 +14,8 @@ const PORT = process.env.PORT || 3000;
 db.authenticate()
   .then(() => console.log("Database connected...🥳🥳"))
   .catch((err) => console.log("Error: " + err));
+
+app.use(cors());
 
 app.use(express.json());
 
